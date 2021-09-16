@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
 import db from '../db/firebase';
+import Notification from './Notification';
 
 export default function AddTodo() {
-  const [input, setInput] = useState('');
+  const [inputTodo, setInputTodo] = useState('');
+  const [show, setShow] = useState(false);
 
   const handleInput = (e) => {
-    setInput(e.target.value);
+    setInputTodo(e.target.value);
   };
 
-  const addTodo = async (e) => {
+  const addTodo = (e) => {
     e.preventDefault();
-    await db.collection('todos').add({
-      todo: input,
-    });
+    db.collection('todos')
+      .add({
+        todo: inputTodo,
+      })
+      .then(() => {
+        setShow(true);
+      })
+      .catch((error) => {
+        console.log('Error adding document: ', error);
+      });
+    setInputTodo('');
   };
 
   return (
     <div>
       <form onSubmit={(e) => addTodo(e)}>
-        <input type="text" value={input} onChange={(e) => handleInput(e)} />
+        <input type="text" value={inputTodo} onChange={(e) => handleInput(e)} />
         <input type="submit" value="Add" />
       </form>
+
+      {show ? <Notification /> : <></>}
     </div>
   );
 }
