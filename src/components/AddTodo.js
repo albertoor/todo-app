@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import db from '../db/firebase';
 import Notification from './Notification';
+import firebase from 'firebase/compat/app';
 
 export default function AddTodo() {
   const [inputTodo, setInputTodo] = useState('');
@@ -10,11 +11,14 @@ export default function AddTodo() {
     setInputTodo(e.target.value);
   };
 
-  const addTodo = (e) => {
+  const addTodo = async (e) => {
     e.preventDefault();
-    db.collection('todos')
+    await db
+      .collection('todos')
       .add({
         todo: inputTodo,
+        timestamp: firebase.firestore.Timestamp.now(),
+        completed: false,
       })
       .then(() => {
         setShow(true);
@@ -22,6 +26,7 @@ export default function AddTodo() {
       .catch((error) => {
         console.log('Error adding document: ', error);
       });
+
     setInputTodo('');
   };
 

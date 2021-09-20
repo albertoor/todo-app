@@ -13,7 +13,7 @@ export default function Notification() {
       draggable: true,
       progress: undefined,
     });
-  }, []);
+  });
 
   return (
     <>
