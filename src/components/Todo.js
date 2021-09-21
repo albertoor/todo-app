@@ -1,18 +1,23 @@
 import React from 'react';
 import db from '../db/firebase';
-import { toast } from 'react-toastify';
 import firebase from 'firebase/compat/app';
+import swal from 'sweetalert';
 
-export default function Todo({ key, id, todo, timestamp, completed }) {
-  console.log(id);
-
+export default function Todo({ id, todo, timestamp, completed }) {
   const deleteTodo = async () => {
-    if (window.confirm('Are you sure you want to delete this todo?')) {
-      await db.collection('todos').doc(id).delete();
-      toast('Todo Removed Successfully', {
-        type: 'error',
-        autoClose: 2000,
-      });
+    if (
+      swal('Are you sure?', {
+        dangerMode: true,
+        buttons: true,
+      })
+    ) {
+      setTimeout(async () => {
+        await db.collection('todos').doc(id).delete();
+        swal({
+          title: 'Task Deleted Successfully',
+          icon: 'error',
+        });
+      }, 2000);
     }
   };
 
@@ -29,16 +34,14 @@ export default function Todo({ key, id, todo, timestamp, completed }) {
 
   return (
     <>
-      <div key={key}>
-        <input
-          type="checkbox"
-          onClick={() => checkedTodo()}
-          checked={completed ? false : true}
-        />
-        <p>{todo}</p>
-        <span>{new Date(timestamp.toDate()).toUTCString()}</span>
-        <button onClick={deleteTodo}>X</button>
-      </div>
+      <input
+        type="checkbox"
+        onClick={() => checkedTodo()}
+        defaultChecked={completed ? false : true}
+      />
+      <p>{todo}</p>
+      <span>{new Date(timestamp.toDate()).toUTCString()}</span>
+      <button onClick={deleteTodo}>X</button>
     </>
   );
 }

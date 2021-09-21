@@ -11,13 +11,14 @@ export default function ListTodos() {
     <div>
       <h1>Todos List</h1>
       {todos.map((todo, index) => (
-        <Todo
-          key={index}
-          id={todo.id}
-          todo={todo.todo}
-          timestamp={todo.timestamp}
-          completed={todo.completed}
-        />
+        <div key={index}>
+          <Todo
+            id={todo.id}
+            todo={todo.todo}
+            timestamp={todo.timestamp}
+            completed={todo.completed}
+          />
+        </div>
       ))}
     </div>
   );

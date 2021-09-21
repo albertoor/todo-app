@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import db from '../db/firebase';
-import Notification from './Notification';
 import firebase from 'firebase/compat/app';
+import swal from 'sweetalert';
 
 export default function AddTodo() {
   const [inputTodo, setInputTodo] = useState('');
-  const [show, setShow] = useState(false);
 
   const handleInput = (e) => {
     setInputTodo(e.target.value);
@@ -18,10 +17,13 @@ export default function AddTodo() {
       .add({
         todo: inputTodo,
         timestamp: firebase.firestore.Timestamp.now(),
-        completed: false,
+        completed: true,
       })
       .then(() => {
-        setShow(true);
+        swal({
+          title: 'Task Deleted Successfully',
+          icon: 'success',
+        });
       })
       .catch((error) => {
         console.log('Error adding document: ', error);
@@ -36,8 +38,6 @@ export default function AddTodo() {
         <input type="text" value={inputTodo} onChange={(e) => handleInput(e)} />
         <input type="submit" value="Add" />
       </form>
-
-      {show ? <Notification /> : <></>}
     </div>
   );
 }
