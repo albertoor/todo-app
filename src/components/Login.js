@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
 import { loginWithEmailAndPassword } from '../auth/authFunctions';
 
@@ -7,10 +7,15 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useFirebaseAuth();
+  const history = useHistory();
 
   const login = () => {
     loginWithEmailAndPassword(email, password);
   };
+
+  useEffect(() => {
+    if (user) history.replace('/');
+  }, [user, history]);
 
   return (
     <>
