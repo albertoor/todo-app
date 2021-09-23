@@ -8,7 +8,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
     const userAdded = await db.collection('users').doc().set({
       uid: user.uid,
-      name: email,
+      name: name,
       authProvider: 'local',
       email: user.email,
     });
@@ -28,4 +28,15 @@ const logOut = async () => {
   }
 };
 
-export { registerWithEmailAndPassword, logOut };
+// Authenticate with email and password
+const loginWithEmailAndPassword = async (email, password) => {
+  try {
+    const res = await auth.signInWithEmailAndPassword(email, password);
+    console.log(res.credential.user);
+  } catch (err) {
+    console.log(err);
+    alert(err.message);
+  }
+};
+
+export { registerWithEmailAndPassword, logOut, loginWithEmailAndPassword };

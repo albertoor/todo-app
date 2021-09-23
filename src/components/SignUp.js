@@ -24,7 +24,7 @@ export default function SignUp() {
   return (
     <>
       <div>
-        <div className="form-group">
+        <div>
           <label htmlFor="name">Enter your name: </label>
           <input
             type="text"
@@ -34,7 +34,7 @@ export default function SignUp() {
           />
         </div>
 
-        <div className="form-group">
+        <div>
           <label htmlFor="email">Enter your email</label>
           <input
             type="email"
@@ -44,7 +44,7 @@ export default function SignUp() {
           />
         </div>
 
-        <div className="form-group">
+        <div>
           <label htmlFor="passwordOne">Enter your passwrord: </label>
           <input
             type="password"
@@ -54,7 +54,7 @@ export default function SignUp() {
           />
         </div>
 
-        <div className="form-group">
+        <div>
           <label htmlFor="passwordTwo">Confirm Password: </label>
           <input
             type="password"
@@ -64,14 +64,14 @@ export default function SignUp() {
           />
         </div>
 
-        <div className="form-group">
+        <div>
           <button onClick={() => register(name, email, passwordOne)}>
             SignUp
           </button>
         </div>
 
-        <div className="form-group">
-          Already have an account? <Link to="/">Login</Link>
+        <div>
+          Already have an account? <Link to="/login">Login</Link>
         </div>
       </div>
     </>
