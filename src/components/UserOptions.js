@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '../db/firebase';
 import { useHistory } from 'react-router-dom';
-import { useFirebaseAuth } from '../auth/FirebaseAuthContext';
+import useFirebaseAuth from '../hooks/useFirebaseAuth';
 
 export default function UserOptions() {
   const history = useHistory();

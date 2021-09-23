@@ -6,8 +6,7 @@ import AddTodo from '../components/AddTodo';
 import ListTodos from '../components/ListTodos';
 import SignUp from '../components/SignUp';
 import UserOptions from '../components/UserOptions';
-
-import { FirebaseAuthProvider } from '../auth/FirebaseAuthContext';
+import { FirebaseAuthProvider } from '../context/FirebaseAuthContext';
 
 export default function App() {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { registerWithEmailAndPassword } from '../auth/authFunctions';
 import { Link, useHistory } from 'react-router-dom';
-import { useFirebaseAuth } from '../auth/FirebaseAuthContext';
+import useFirebaseAuth from '../hooks/useFirebaseAuth';
 
 export default function SignUp() {
   const [name, setName] = useState('');
