@@ -39,7 +39,6 @@ export default function Login() {
           />
           <button onClick={() => login()}>Log In</button>
         </div>
-
         <div>
           Don't have an account <Link to="/signup">Create one!</Link>
         </div>

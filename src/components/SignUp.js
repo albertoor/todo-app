@@ -17,7 +17,6 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    // if (loading) return;
     if (user) history.replace('/');
   }, [user, history]);
 

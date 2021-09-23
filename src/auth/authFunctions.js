@@ -31,8 +31,7 @@ const logOut = async () => {
 // Authenticate with email and password
 const loginWithEmailAndPassword = async (email, password) => {
   try {
-    const res = await auth.signInWithEmailAndPassword(email, password);
-    console.log(res.credential.user);
+    await auth.signInWithEmailAndPassword(email, password);
   } catch (err) {
     console.log(err);
     alert(err.message);
