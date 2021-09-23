@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import db from '../db/firebase';
+import { db } from '../db/firebase';
 
 export default function useTodos() {
   const [todos, setTodos] = useState([]);
