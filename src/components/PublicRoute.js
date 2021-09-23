@@ -10,13 +10,15 @@ export default function PublicRoute({
   const user = useFirebaseAuth();
 
   return (
-    <div>
-      <Route
-        {...rest}
-        render={(props) => {
-          user && restricted ? <Redirect to="/" /> : <Component {...props} />;
-        }}
-      />
-    </div>
+    <Route
+      {...rest}
+      render={(props) =>
+        user && restricted ? (
+          <Redirect to="/dashboard" />
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
   );
 }
