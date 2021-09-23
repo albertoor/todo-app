@@ -12,17 +12,8 @@ import { FirebaseAuthProvider } from '../context/FirebaseAuthContext';
 import LoaderComponent from '../components/LoaderComponent';
 
 // // lazy components
-const SignUp = lazy(() => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(import('../components/SignUp'), 5000));
-  });
-});
-
-const Login = lazy(() => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(import('../components/Login'), 5000));
-  });
-});
+const SignUp = lazy(() => import('../components/SignUp'));
+const Login = lazy(() => import('../components/Login'));
 
 export default function App() {
   return (
