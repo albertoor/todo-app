@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { registerWithEmailAndPassword } from '../auth/authFunctions';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../db/firebase';
+import { useFirebaseAuth } from '../auth/FirebaseAuthContext';
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [passwordOne, setPasswordOne] = useState('');
   const [passwordTwo, setPasswordTwo] = useState('');
-  const [user, loading] = useAuthState(auth);
   const history = useHistory();
+  const user = useFirebaseAuth();
 
   const register = (name, email, passwordOne) => {
-    console.log(name, email, passwordOne);
     if (!name) alert('Please enter name');
     registerWithEmailAndPassword(name, email, passwordOne);
   };
 
   useEffect(() => {
-    if (loading) return;
+    // if (loading) return;
     if (user) history.replace('/');
-  }, [user, loading, history]);
+  }, [user, history]);
 
   return (
     <>
