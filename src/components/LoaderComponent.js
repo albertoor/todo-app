@@ -1,10 +1,13 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
+import { Container } from './styles';
 
 export default function LoaderComponent() {
   return (
     <>
-      <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+      <Container>
+        <Loader type="ThreeDots" color="#ffff" height={80} width={80} />
+      </Container>
     </>
   );
 }

@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
 import { loginWithEmailAndPassword } from '../auth/authFunctions';
+import {
+  Container,
+  Card,
+  FormGroup,
+  Label,
+  Input,
+  Title,
+  ButtonForm,
+  FormFooter,
+} from './styles';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -20,29 +30,36 @@ export default function Login() {
   return (
     <>
       {user && <Redirect to="/" />}
-      <div>
-        <h1>Welcome to Login</h1>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="email"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={() => login()}>Log In</button>
-        </div>
-        <div>
-          Don't have an account <Link to="/signup">Create one!</Link>
-        </div>
-      </div>
+      <Container>
+        <Card>
+          <Title>
+            <h1>Login</h1>
+          </Title>
+          <FormGroup>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="email"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <ButtonForm onClick={() => login()}>Log In</ButtonForm>
+          </FormGroup>
+          <FormFooter>
+            Don't have an account ➡️<Link to="/signup">Create one!</Link>
+          </FormFooter>
+        </Card>
+      </Container>
     </>
   );
 }

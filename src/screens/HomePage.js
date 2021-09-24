@@ -4,6 +4,7 @@ import User from '../components/User';
 import ListTodos from '../components/ListTodos';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
 import LoaderComponent from '../components/LoaderComponent';
+import styled from 'styled-components';
 
 export default function HomePage() {
   const user = useFirebaseAuth();
@@ -20,14 +21,21 @@ export default function HomePage() {
   return (
     <div>
       {!loading ? (
-        <div>
+        <Container>
           <User />
           <AddTodo />
           <ListTodos />
-        </div>
+        </Container>
       ) : (
         <LoaderComponent />
       )}
     </div>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+`;
