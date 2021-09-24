@@ -4,7 +4,7 @@ import User from '../components/User';
 import ListTodos from '../components/ListTodos';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
 import LoaderComponent from '../components/LoaderComponent';
-import styled from 'styled-components';
+import { Container, Card } from '../components/styles';
 
 export default function HomePage() {
   const user = useFirebaseAuth();
@@ -22,9 +22,11 @@ export default function HomePage() {
     <div>
       {!loading ? (
         <Container>
-          <User />
-          <AddTodo />
-          <ListTodos />
+          <Card>
+            <User />
+            <AddTodo />
+            <ListTodos />
+          </Card>
         </Container>
       ) : (
         <LoaderComponent />
@@ -32,10 +34,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-`;
