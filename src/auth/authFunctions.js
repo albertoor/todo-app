@@ -9,7 +9,6 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     const userAdded = await db.collection('users').doc().set({
       uid: user.uid,
       name: name,
-      authProvider: 'local',
       email: user.email,
     });
     console.log(userAdded);
