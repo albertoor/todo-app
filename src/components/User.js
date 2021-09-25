@@ -16,7 +16,7 @@ export default function User() {
   return (
     <>
       <UserContainer>
-        <UserEmail>Hello, {user?.email}</UserEmail>
+        <p>Hello, {user?.email}</p>
         <button onClick={() => signOut()}>Log Out</button>
       </UserContainer>
     </>
@@ -26,8 +26,10 @@ export default function User() {
 const UserContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`;
+  font-size: 30x;
+  align-items: center;
 
-const UserEmail = styled.p`
-  font-size: 18px;
+  > button {
+    font-size: 18px;
+  }
 `;

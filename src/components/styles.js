@@ -39,7 +39,7 @@ const Title = styled.div`
 
 const ButtonForm = styled.button`
   padding: 1rem 1rem;
-  background-color: var(--pink);
+  background-color: var(--blue);
   border: none;
   font-size: 25px;
   color: var(--text1);

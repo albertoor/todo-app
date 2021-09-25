@@ -1,11 +1,9 @@
 :root {
   --backgroundCard: #3d4348;
-  --pink: #3d4348;
   --text1: #ffff;
   --text2: #797d84;
-  --text3: #c8ccd0;
   --black: #040404;
-  --pink: #e85e8d;
+  --blue: #3f8497;
 }
 
 * {
@@ -20,7 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--pink);
+  background-color: var(--blue);
 }
 
 code {

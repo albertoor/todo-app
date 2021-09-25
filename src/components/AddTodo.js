@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../db/firebase';
 import firebase from 'firebase/compat/app';
 import swal from 'sweetalert';
 import styled from 'styled-components';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 export default function AddTodo() {
   const [inputTodo, setInputTodo] = useState('');
@@ -33,38 +34,69 @@ export default function AddTodo() {
     setInputTodo('');
   };
 
+  // This useEffect is listening when user press Enter or
+  // NumpadEnter to submit data
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.code === 'Enter' || e.code === 'NumpadEneter') {
+        console.log('Enter was pressed. Run your function');
+        addTodo(e);
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('keydown', listener);
+
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  });
+
   return (
     <>
-      <FormSection>
-        <Form onSubmit={(e) => addTodo(e)}>
-          <input
-            type="text"
-            value={inputTodo}
-            onChange={(e) => handleInput(e)}
-          />
-          <input type="submit" value="Add" />
-        </Form>
-      </FormSection>
+      <ContainerTodo>
+        <Input
+          type="text"
+          value={inputTodo}
+          placeholder="Enter a todo"
+          onChange={(e) => handleInput(e)}
+        />
+        <Plus onClick={(e) => addTodo(e)}>
+          <AiOutlinePlus />
+        </Plus>
+      </ContainerTodo>
     </>
   );
 }
 
-const FormSection = styled.div`
+const ContainerTodo = styled.form`
+  display: flex;
   margin-top: 1rem;
-  display: flex;
-  background-color: green;
-  padding: 1rem 1rem;
 `;
 
-const Form = styled.form`
+const Input = styled.input`
   display: flex;
-  padding: 1rem 1rem;
-  background-color: red;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
+  color: var(--text1);
+  background-color: var(--black);
+  padding: 0.5rem 0.5rem;
+  font-size: 18px;
+  border-radius: 10px 0px 0px 10px;
+  border: none;
+  width: 100%;
+
+  ::placeholder {
+    color: var(--text1);
+  }
+
+  &:focus {
+    outline-width: 0;
+  }
 `;
 
-const FormGroup = styled.div`
-  display: flex;
+const Plus = styled.button`
+  border-radius: 0px 10px 10px 0px;
+  border: none;
+  background-color: var(--blue);
+  color: var(--text1);
+  cursor: pointer;
 `;
