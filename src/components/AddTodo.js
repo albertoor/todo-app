@@ -12,37 +12,31 @@ export default function AddTodo() {
   const user = useFirebaseAuth();
 
   const userInfo = useUserInfo(user.uid);
-  console.log(userInfo);
 
   const handleInput = (e) => {
     setInputTodo(e.target.value);
   };
 
-  // const addTodo = async (e) => {
-  //   e.preventDefault();
-  //   await db
-  //     .collection('todos')
-  //     .add({
-  //       todo: inputTodo,
-  //       timestamp: firebase.firestore.Timestamp.now(),
-  //       completed: true,
-  //     })
-  //     .then(() => {
-  //       swal({
-  //         title: 'Task Deleted Successfully',
-  //         icon: 'success',
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error adding document: ', error);
-  //     });
-
-  //   setInputTodo('');
-  // };
-
   const addTodo = async (e) => {
     e.preventDefault();
-    await db.collection('users').doc(user.uid);
+    await db
+      .collection('users')
+      .doc(userInfo.id)
+      .collection('todos')
+      .add({
+        todo: inputTodo,
+        timestamp: firebase.firestore.Timestamp.now(),
+        completed: true,
+      })
+      .then(() => {
+        swal({
+          title: 'Task Deleted Successfully',
+          icon: 'success',
+        });
+      })
+      .catch((error) => {
+        console.log('Error adding document: ', error);
+      });
     setInputTodo('');
   };
 

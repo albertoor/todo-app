@@ -10,6 +10,7 @@ export default function useUserInfo(userId) {
       .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           setUserInfo({
+            id: doc.id,
             uid: doc.data().uid,
             name: doc.data().name,
             email: doc.data().email,
