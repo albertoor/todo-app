@@ -2,6 +2,7 @@ import React from 'react';
 import { auth } from '../db/firebase';
 import { useHistory } from 'react-router-dom';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
+import styled from 'styled-components';
 
 export default function User() {
   const history = useHistory();
@@ -14,10 +15,19 @@ export default function User() {
 
   return (
     <>
-      <div>
-        <h1>{user?.email}</h1>
+      <UserContainer>
+        <UserEmail>Hello, {user?.email}</UserEmail>
         <button onClick={() => signOut()}>Log Out</button>
-      </div>
+      </UserContainer>
     </>
   );
 }
+
+const UserContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const UserEmail = styled.p`
+  font-size: 18px;
+`;

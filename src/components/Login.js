@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useFirebaseAuth from '../hooks/useFirebaseAuth';
 import { loginWithEmailAndPassword } from '../auth/authFunctions';
 import {
@@ -23,13 +23,32 @@ export default function Login() {
     loginWithEmailAndPassword(email, password);
   };
 
+  // This useEffect is listening when user is True it will
+  // redirect to "/" path
   useEffect(() => {
     if (user) history.replace('/');
   }, [user, history]);
 
+  // This useEffect is listening when user press Enter or
+  // NumpadEnter to submit data
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.code === 'Enter' || e.code === 'NumpadEneter') {
+        console.log('Enter was pressed. Run your function');
+        login();
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('keydown', listener);
+
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  });
+
   return (
     <>
-      {user && <Redirect to="/" />}
       <Container>
         <Card>
           <Title>
