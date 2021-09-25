@@ -26,9 +26,29 @@ export default function SignUp() {
     registerWithEmailAndPassword(name, email, passwordOne);
   };
 
+  // This useEffect is listening when user is True it will
+  // redirect to "/" path
   useEffect(() => {
     if (user) history.replace('/');
   }, [user, history]);
+
+  // This useEffect is listening when user press Enter or
+  // NumpadEnter to submit data
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.code === 'Enter' || e.code === 'NumpadEneter') {
+        console.log('Enter was pressed. Run your function');
+        register(name, email, passwordOne);
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('keydown', listener);
+
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  });
 
   return (
     <>
