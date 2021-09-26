@@ -8,15 +8,12 @@ export default function ListTodos() {
   const user = useFirebaseAuth();
   const userId = useUserId(user.uid);
 
-  console.log(userId);
-  const todos = useTodos(userId);
-
-  console.log(todos);
+  const { todos } = useTodos(userId);
 
   return (
     <div>
       <h1>Todos List</h1>
-      {/* {todos.map((todo, index) => (
+      {todos.map((todo, index) => (
         <div key={index}>
           <Todo
             id={todo.id}
@@ -25,7 +22,7 @@ export default function ListTodos() {
             completed={todo.completed}
           />
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }
