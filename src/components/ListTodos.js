@@ -7,6 +7,8 @@ import useUserId from '../hooks/useUserId';
 export default function ListTodos() {
   const user = useFirebaseAuth();
   const userId = useUserId(user.uid);
+
+  console.log(userId);
   const todos = useTodos(userId);
 
   console.log(todos);
