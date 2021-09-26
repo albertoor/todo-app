@@ -1,16 +1,20 @@
 import React from 'react';
 import Todo from './Todo';
 import useTodos from '../hooks/useTodos';
+import useFirebaseAuth from '../hooks/useFirebaseAuth';
+import useUserId from '../hooks/useUserId';
 
 export default function ListTodos() {
-  const { todos } = useTodos();
+  const user = useFirebaseAuth();
+  const userId = useUserId(user.uid);
+  const todos = useTodos(userId);
 
   console.log(todos);
 
   return (
     <div>
       <h1>Todos List</h1>
-      {todos.map((todo, index) => (
+      {/* {todos.map((todo, index) => (
         <div key={index}>
           <Todo
             id={todo.id}
@@ -19,7 +23,7 @@ export default function ListTodos() {
             completed={todo.completed}
           />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

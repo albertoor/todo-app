@@ -10,7 +10,6 @@ import useUserInfo from '../hooks/useUserInfo';
 export default function AddTodo() {
   const [inputTodo, setInputTodo] = useState('');
   const user = useFirebaseAuth();
-
   const userInfo = useUserInfo(user.uid);
 
   const handleInput = (e) => {
