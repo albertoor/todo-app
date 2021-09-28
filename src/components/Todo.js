@@ -4,28 +4,28 @@ import firebase from 'firebase/compat/app';
 import swal from 'sweetalert';
 
 export default function Todo({ id, todo, timestamp, completed, userId }) {
-  // const [deleteConfirm, setDeleteConfirm] = useState(false);
-
   const deleteTodo = async () => {
-    if (
-      swal('Are you sure?', {
-        dangerMode: true,
-        buttons: true,
-      })
-    ) {
-      setTimeout(async () => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this todo!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
         await db
           .collection('users')
           .doc(userId)
           .collection('todos')
           .doc(id)
           .delete();
-        swal({
-          title: 'Task Deleted Successfully',
-          icon: 'error',
+        swal('Your todo has been deleted!', {
+          icon: 'success',
         });
-      }, 2000);
-    }
+      } else {
+        swal('Your todo is safe!');
+      }
+    });
   };
 
   const checkedTodo = async () => {
