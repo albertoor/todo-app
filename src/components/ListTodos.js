@@ -7,7 +7,6 @@ import useUserId from '../hooks/useUserId';
 export default function ListTodos() {
   const user = useFirebaseAuth();
   const userId = useUserId(user.uid);
-
   const { todos } = useTodos(userId);
 
   return (
@@ -20,6 +19,7 @@ export default function ListTodos() {
             todo={todo.todo}
             timestamp={todo.timestamp}
             completed={todo.completed}
+            userId={userId}
           />
         </div>
       ))}
