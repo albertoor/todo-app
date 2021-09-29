@@ -7,10 +7,10 @@ import useUserId from '../hooks/useUserId';
 export default function ListTodos() {
   const user = useFirebaseAuth();
   const userId = useUserId(user.uid);
-  const { todos } = useTodos(userId);
+  const todos = useTodos(userId);
 
   return (
-    <div>
+    <>
       <h1>Todos List</h1>
       {todos.map((todo, index) => (
         <div key={index}>
@@ -23,6 +23,6 @@ export default function ListTodos() {
           />
         </div>
       ))}
-    </div>
+    </>
   );
 }

@@ -3,7 +3,6 @@ import { db } from '../db/firebase';
 
 export default function useTodos(userId) {
   const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -23,15 +22,13 @@ export default function useTodos(userId) {
               });
             });
             setTodos(docs);
-            setLoading(false);
           },
           (err) => {
-            setError('');
             console.log(err);
           }
         );
     }
   }, [userId]);
 
-  return { todos, loading, error };
+  return todos;
 }
