@@ -31,5 +31,10 @@ const UserContainer = styled.div`
 
   > button {
     font-size: 18px;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    background-color: #ff6961;
+    color: #ffff;
+    border: none;
   }
 `;
